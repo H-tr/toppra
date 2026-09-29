@@ -13,11 +13,6 @@ from toppra.interpolator import AbstractGeometricPath, SplineInterpolator
 from toppra.exceptions import ToppraError
 from toppra.constants import TINY
 
-try:
-    import matplotlib.pyplot as plt
-except ImportError:
-    pass
-
 logger = logging.getLogger(__name__)
 
 class ParametrizeConstAccel(AbstractGeometricPath):
@@ -130,6 +125,7 @@ class ParametrizeConstAccel(AbstractGeometricPath):
 
     def plot_parametrization(self, show: bool = False, n_sample: int = 500) -> None:
         """Plot the output parametrization and show it."""
+        import matplotlib.pyplot as plt  # optional dependency, only needed for plotting
 
         # small decrement to make sure all indices are valid
         ts = np.linspace(self.path_interval[0], self.path_interval[1], n_sample)

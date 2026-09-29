@@ -11,7 +11,6 @@ import abc
 import enum
 import numpy as np
 import time
-import matplotlib.pyplot as plt
 
 from toppra.constants import TINY
 from toppra.interpolator import SplineInterpolator, AbstractGeometricPath
@@ -195,6 +194,8 @@ class ParameterizationAlgorithm(object):
 
     def inspect(self, compute=True):
         """Inspect the problem internal data."""
+        import matplotlib.pyplot as plt  # optional dependency, only needed for plotting
+
         K = self.problem_data.K
         X = self.problem_data.X
         if X is not None:

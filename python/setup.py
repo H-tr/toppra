@@ -18,7 +18,7 @@ URL = "https://github.com/hungpham2511/toppra"
 
 # setup requirements
 with open("requirements.txt", "r") as f:
-    REQUIRES = ["scipy>0.18", "numpy", "matplotlib"]
+    REQUIRES = ["scipy>0.18", "numpy"]
     DEV_REQUIRES = [line.strip() for line in f if line.strip()]
 
 AUTHOR = "Hung Pham"
