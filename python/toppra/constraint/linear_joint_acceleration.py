@@ -12,10 +12,10 @@ class JointAccelerationConstraint(LinearConstraint):
 
     .. math ::
 
-                \ddot{\mathbf{q}}_{min} & \leq \ddot{\mathbf q}
-                                                    &\leq \ddot{\mathbf{q}}_{max} \\\\
-                \ddot{\mathbf{q}}_{min} & \leq \mathbf{q}'(s_i) u_i + \mathbf{q}''(s_i) x_i
-                                                    &\leq \ddot{\mathbf{q}}_{max}
+                \\ddot{\\mathbf{q}}_{min} & \\leq \\ddot{\\mathbf q}
+                                                    &\\leq \\ddot{\\mathbf{q}}_{max} \\\\
+                \\ddot{\\mathbf{q}}_{min} & \\leq \\mathbf{q}'(s_i) u_i + \\mathbf{q}''(s_i) x_i
+                                                    &\\leq \\ddot{\\mathbf{q}}_{max}
 
     where :math:`u_i, x_i` are respectively the path acceleration and
     path velocity square at :math:`s_i`. For more detail see :ref:`derivationKinematics`.
@@ -23,10 +23,10 @@ class JointAccelerationConstraint(LinearConstraint):
     Rearranging the above pair of vector inequalities into the form
     required by :class:`LinearConstraint`, we have:
 
-    - :code:`a[i]` := :math:`\mathbf q'(s_i)`
-    - :code:`b[i]` := :math:`\mathbf q''(s_i)`
-    - :code:`F` := :math:`[\mathbf{I}, -\mathbf I]^T`
-    - :code:`h` := :math:`[\ddot{\mathbf{q}}_{max}^T, -\ddot{\mathbf{q}}_{min}^T]^T`
+    - :code:`a[i]` := :math:`\\mathbf q'(s_i)`
+    - :code:`b[i]` := :math:`\\mathbf q''(s_i)`
+    - :code:`F` := :math:`[\\mathbf{I}, -\\mathbf I]^T`
+    - :code:`h` := :math:`[\\ddot{\\mathbf{q}}_{max}^T, -\\ddot{\\mathbf{q}}_{min}^T]^T`
     """
 
     def __init__(self, alim, discretization_scheme=DiscretizationType.Interpolation):

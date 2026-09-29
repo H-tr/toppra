@@ -9,7 +9,7 @@ class JointTorqueConstraint(LinearConstraint):
     A joint torque constraint is given by
 
     .. math::
-        A(q) \ddot q + \dot q^\\top B(q) \dot q + C(q) + D( \dot q )= w,
+        A(q) \\ddot q + \\dot q^\\top B(q) \\dot q + C(q) + D( \\dot q )= w,
 
     where w is a vector that satisfies the polyhedral constraint:
 
@@ -24,8 +24,8 @@ class JointTorqueConstraint(LinearConstraint):
     can derive the second-order equation as follows
 
     .. math::
-        A(q) p'(s) \ddot s + [A(q) p''(s) + p'(s)^\\top B(q) p'(s)] \dot s^2 + C(q) + D( \dot q ) = w,
-        a(s) \ddot s + b(s) \dot s ^2 + c(s) = w
+        A(q) p'(s) \\ddot s + [A(q) p''(s) + p'(s)^\\top B(q) p'(s)] \\dot s^2 + C(q) + D( \\dot q ) = w,
+        a(s) \\ddot s + b(s) \\dot s ^2 + c(s) = w
 
     To evaluate the coefficients a(s), b(s), c(s), inv_dyn is called
     repeatedly with appropriate arguments.

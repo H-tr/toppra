@@ -13,16 +13,16 @@ class LinearConstraint(Constraint):
 
     .. math::
 
-        \mathbf a_i u + \mathbf b_i x + \mathbf c_i &= v, \\\\
-        \mathbf F_i v &\\leq \mathbf g_i, \\\\
+        \\mathbf a_i u + \\mathbf b_i x + \\mathbf c_i &= v, \\\\
+        \\mathbf F_i v &\\leq \\mathbf g_i, \\\\
         x^{bound}_{i, 0} \\leq x &\\leq x^{bound}_{i, 1}, \\\\
         u^{bound}_{i, 0} \\leq u &\\leq u^{bound}_{i, 1}.
 
-    Alternatively, if :math:`\mathbf F_i` is constant for all values
+    Alternatively, if :math:`\\mathbf F_i` is constant for all values
     of :math:`i`, then we can consider the simpler constraint:
 
     .. math::
-        \mathbf F v &\\leq \mathbf w, \\\\
+        \\mathbf F v &\\leq \\mathbf w, \\\\
 
     In this case, the returned value of :math:`F` by
     `compute_constraint_params` has shape (k, m) instead of (N, k, m),

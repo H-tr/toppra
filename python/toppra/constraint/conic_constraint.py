@@ -10,8 +10,8 @@ class ConicConstraint(Constraint):
 
     .. math::
 
-        (a[i] + da[i]) u + (b[i] + db[i]) x + (c[i] + dc[i]) \leq 0, \\\\
-        [da[i, j], db[i, j], dc[i, j]]^\top = P[i, j] u, \|u\|_2 \leq 1,
+        (a[i] + da[i]) u + (b[i] + db[i]) x + (c[i] + dc[i]) \\leq 0, \\\\
+        [da[i, j], db[i, j], dc[i, j]]^\top = P[i, j] u, \\|u\\|_2 \\leq 1,
 
     where P[i, j] is a 3x3 matrix. Notice that by setting P[i, j] to
     the zero matrix, this is the same as the original constraint.
@@ -21,7 +21,7 @@ class ConicConstraint(Constraint):
     resulting conic-quadratic constraint is given below
 
     .. math::
-        a[i, j]u + b[i, j]x + c[i, j] + \|P[i, j]^T [u, x, 1]^T \|_2 \leq 0,
+        a[i, j]u + b[i, j]x + c[i, j] + \\|P[i, j]^T [u, x, 1]^T \\|_2 \\leq 0,
 
     where i is the stage index, and j is the constraint index.
 
@@ -49,14 +49,14 @@ class RobustLinearConstraint(ConicConstraint):
 
     This constraint can be seen as a robustified version of a
     CanonicalLinear constraint. In particular, the perturbations term,
-    [\Delta a[i, j], \Delta b[i, j], \Delta c[i, j]] is assumed to lie
+    [\\Delta a[i, j], \\Delta b[i, j], \\Delta c[i, j]] is assumed to lie
     in a centered ellipsoid:
 
     .. math::
 
-        [\Delta a[i, j], \Delta b[i, j], \Delta c[i, j]]^\\top = diag(ru, rx, rc) \mathbf e,
+        [\\Delta a[i, j], \\Delta b[i, j], \\Delta c[i, j]]^\\top = diag(ru, rx, rc) \\mathbf e,
 
-    where \|\mathbf e\|_2 \leq 1.
+    where \\|\\mathbf e\\|_2 \\leq 1.
 
     Parameters
     ----------

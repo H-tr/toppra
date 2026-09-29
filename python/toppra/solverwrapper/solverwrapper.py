@@ -115,8 +115,8 @@ class SolverWrapper(object):
         .. math::
             \\text{min  }  & 0.5 [u, x, v] H [u, x, v]^\\top + [u, x, v] g    \\\\
             \\text{s.t.  } & [u, x] \\text{ is feasible at stage } i \\\\
-                           & x_{min} \leq x \leq x_{max}             \\\\
-                           & x_{next, min} \leq x + 2 \Delta_i u \leq x_{next, max},
+                           & x_{min} \\leq x \\leq x_{max}             \\\\
+                           & x_{next, min} \\leq x + 2 \\Delta_i u \\leq x_{next, max},
 
         where `v` is an auxiliary variable, only exist if there are
         non-canonical constraints.  The linear program is the

@@ -15,49 +15,49 @@ class SecondOrderConstraint(LinearConstraint):
     following formula:
 
     .. math::
-        A(\mathbf{q}) \ddot {\mathbf{q}} + \dot
-        {\mathbf{q}}^\\top B(\mathbf{q}) \dot {\mathbf{q}} + C(\mathbf{q}) = w,
+        A(\\mathbf{q}) \\ddot {\\mathbf{q}} + \\dot
+        {\\mathbf{q}}^\\top B(\\mathbf{q}) \\dot {\\mathbf{q}} + C(\\mathbf{q}) = w,
 
     where w is a vector that satisfies the polyhedral constraint:
 
     .. math::
-        F(\mathbf{q}) w \\leq g(\mathbf{q}).
+        F(\\mathbf{q}) w \\leq g(\\mathbf{q}).
 
     Take the example of a robot torque bound, the functions :math:`A,
     B, C` represent respectively the inertial, Corriolis and
     gravitational terms of the robot's rigid body dynamics.
 
     We can evaluate a constraint on a given geometric path
-    :math:`\mathbf{p}(s)` using the following equations, which are
+    :math:`\\mathbf{p}(s)` using the following equations, which are
     obtained by direct substitution:
 
     .. math::
 
-        A(\mathbf{q}) \mathbf{p}'(s) \ddot s + [A(\mathbf{q}) \mathbf{p}''(s) + \mathbf{p}'(s)^\\top B(\mathbf{q})
-        \mathbf{p}'(s)] \dot s^2 + C(\mathbf{q}) = w, \\\\
-        \mathbf{a}(s) \ddot s + \mathbf{b}(s) \dot s ^2 + \mathbf{c}(s) = w.
+        A(\\mathbf{q}) \\mathbf{p}'(s) \\ddot s + [A(\\mathbf{q}) \\mathbf{p}''(s) + \\mathbf{p}'(s)^\\top B(\\mathbf{q})
+        \\mathbf{p}'(s)] \\dot s^2 + C(\\mathbf{q}) = w, \\\\
+        \\mathbf{a}(s) \\ddot s + \\mathbf{b}(s) \\dot s ^2 + \\mathbf{c}(s) = w.
 
-    where :math:`\mathbf{p}', \mathbf{p}''` denote respectively the
+    where :math:`\\mathbf{p}', \\mathbf{p}''` denote respectively the
     first and second derivatives of the path. It is important to
-    understand that the vector functions :math:`\mathbf a, \mathbf b,
-    \mathbf c` are what `toppra` needs to solve for path
+    understand that the vector functions :math:`\\mathbf a, \\mathbf b,
+    \\mathbf c` are what `toppra` needs to solve for path
     parametrizations.
 
-    To evaluate these coefficients :math:`\mathbf a(s), \mathbf b(s),
-    \mathbf c(s)`, fortunately, it is not necessary to have the
+    To evaluate these coefficients :math:`\\mathbf a(s), \\mathbf b(s),
+    \\mathbf c(s)`, fortunately, it is not necessary to have the
     functions :math:`A, B, C` explicitly. Rather, it is only required
     to have the sum of the these 3 functions--the so-called inverse
     dynamic function:
 
     .. math::
-        \mathrm{inverse\_dyn}(\mathbf q, \dot{\mathbf q}, \ddot{\mathbf q}) :=
-        A(\mathbf{q}) \ddot {\mathbf{q}} + \dot {\mathbf{q}}^\\top B(\mathbf{q}) \dot {\mathbf{q}} + C(\mathbf{q})
+        \\mathrm{inverse\\_dyn}(\\mathbf q, \\dot{\\mathbf q}, \\ddot{\\mathbf q}) :=
+        A(\\mathbf{q}) \\ddot {\\mathbf{q}} + \\dot {\\mathbf{q}}^\\top B(\\mathbf{q}) \\dot {\\mathbf{q}} + C(\\mathbf{q})
 
     In some cases, one might have terms that depends purely on the
     path:
 
     .. math::
-        \mathbf{a}(s) \ddot s + \mathbf{b}(s) \dot s ^2 + \mathbf{c}(s) + \mathcal{C}(\mathbf p, s)= w.
+        \\mathbf{a}(s) \\ddot s + \\mathbf{b}(s) \\dot s ^2 + \\mathbf{c}(s) + \\mathcal{C}(\\mathbf p, s)= w.
 
     an example is the joint friction. This term is referred to as
     `custom_term` in the initializing arguments of
@@ -65,10 +65,10 @@ class SecondOrderConstraint(LinearConstraint):
 
     It is interesting to note that we can actually use a more general
     form of the above equations, hence covering a wider class of
-    constraints. In particular, one can replace :math:`A(\mathbf{q}),
-    B(\mathbf{q}), C(\mathbf{q}), F(\mathbf{q}), g(\mathbf{q})` with
-    :math:`A(\mathbf{q}, s), B(\mathbf{q}, s), C(\mathbf{q}, s),
-    F(\mathbf{q}, s), g(\mathbf{q}, s)`. This form, however, is not
+    constraints. In particular, one can replace :math:`A(\\mathbf{q}),
+    B(\\mathbf{q}), C(\\mathbf{q}), F(\\mathbf{q}), g(\\mathbf{q})` with
+    :math:`A(\\mathbf{q}, s), B(\\mathbf{q}, s), C(\\mathbf{q}, s),
+    F(\\mathbf{q}, s), g(\\mathbf{q}, s)`. This form, however, is not
     implemented in `toppra`.
 
     """
@@ -81,13 +81,13 @@ class SecondOrderConstraint(LinearConstraint):
         inv_dyn: (np.ndarray, np.ndarray, np.ndarray) -> np.ndarray
             The "inverse dynamics" function that receives joint
             position, velocity, acceleration and path position as inputs and ouputs
-            the constrained vector :math:`\mathbf w`. See above for more details.
+            the constrained vector :math:`\\mathbf w`. See above for more details.
         constraint_F: (np.ndarray) -> np.ndarray
-            The constraint coefficient function :math:`\mathbf
-            F(\mathbf q, s)`. See above for more details.
+            The constraint coefficient function :math:`\\mathbf
+            F(\\mathbf q, s)`. See above for more details.
         constraint_g: (np.ndarray) -> np.ndarray
-            The constraint coefficient function :math:`\mathbf
-            g(\mathbf q, s)`. See above for more details.
+            The constraint coefficient function :math:`\\mathbf
+            g(\\mathbf q, s)`. See above for more details.
         dof: int
             The dimension of the joint position.
         custom_term: (:class:`Interpolator`, float) -> np.ndarray
